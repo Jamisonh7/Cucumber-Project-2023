@@ -4,6 +4,7 @@ const SignUpPage = require('../../Pages/Hotels/SignUpPage');
 const TermsAndConditionsPage = require('../../Pages/Hotels/TermsAndConditionsPage');
 const { expect } = require("chai");
 const { and } = require('wdio-wait-for');
+const moment = require("moment");
 
 const homepage = new Homepage();
 const signUpPage = new SignUpPage();
@@ -195,5 +196,77 @@ Then(/^I verify "terms and conditions" page opens in new tab$/, async function (
 })
 
 Then(/^I verify "Last revised" date format$/, async function () {
-    await termsConditions.lastRevisedDate();
+    const revisedDate = await termsConditions.lastRevisedDate();
+    expect(revisedDate, 'NOT WORKING').to.be.equal('01/01/23')
+
+    Format = 'MM/DD/YY';
+
+    const formatsAreMatching = moment(revisedDate, Format).isValid();
+    expect(formatsAreMatching, 'Nice Try').to.be.true;
+})
+
+Then(/^I click on "Privacy Statment" link$/, async function () {
+    await termsConditions.clickPrivacyStatment();
+
+})
+
+Then(/^I verify "Last Updated" date format$/, async function () {
+    const lastUpdated = await termsConditions.lastUpdatedDate();
+    expect(lastUpdated, 'Not Working').to.be.equal('20 December, 2022')
+
+    Format2 = 'DD MMMM, YYYY'
+
+    const formatsAreMatching2 = moment(lastUpdated, Format2).isValid();
+    expect(formatsAreMatching2, 'Try again').to.be.true;
+})
+
+Then(/^I click on blue sign in button$/, async function () {
+    await homepage.clickSignInOnSignInBtn()
+})
+
+When(/^I enter invalid email address as "(.+)"$/, async function (email) {
+    await homepage.inputLoginEmail(email);
+    await browser.pause(2000);
+})
+
+Then(/^I click on continue button$/, async function () {
+    await homepage.clickLoginContinueBtn();
+})
+
+Then(/^I verify "enter a valid email" error is displayed$/, async function () {
+    await homepage.loginErrorDisplayed();
+})
+
+When(/^I click on language icon$/, async function () {
+    await homepage.clickLanguageIcon();
+    await browser.pause(2000);
+})
+
+Then(/^I select "(.+)" in language dropdown$/, async function (Language) {
+    await homepage.selectEspanolLanguage(Language);
+    await browser.pause(2000);
+})
+
+Then(/^I click on save button$/, async function () {
+    await homepage.clickSaveLanguage();
+})
+
+Then(/^I verify that Español is displayed$/, async function () {
+    const isEspanolDisplayed = await homepage.espanolDisplayed();
+    expect(isEspanolDisplayed, 'Espanol is not displayed').to.be.true;
+})
+
+
+Then(/^I click on Guardar button$/, async function () {
+    await homepage.clickSaveLanguageEsp();
+})
+
+Then(/^I verify that English is displayed$/, async function () {
+    const isEnglishDisplayed = await homepage.englishDisplayed();
+    expect(isEnglishDisplayed, 'English is not displayed').to.be.true;
+})
+
+When(/^I click on "List your property"$/, async function () {
+    await homepage.clickListYourProperty();
+    await browser.pause(2000);
 })

@@ -5,12 +5,12 @@ class TermsAndConditionsPage {
 // Locators
 termsOfServiceHeaderLocator = '#_TERMS_OF_SERVICE';
 lastRevisedDateLocator = 'span*=Last revised';
+privacyStatementLocator = '//a[text()="Privacy Statement "]';
+privacyStatementSummerHeaderLocator = '//h2[text()="Privacy Statement Summary"]';
+lastUpdatedDateLocator = 'p*=Last Updated';
 
 
 // Functions
-// async termsAndConditionsNewTab() {
-//     await browser.getTitle()
-// }
 
 async termsOfServiceHeaderDisplayed() {
     const termsHeader = await $(this.termsOfServiceHeaderLocator).isDisplayed();
@@ -19,11 +19,25 @@ async termsOfServiceHeaderDisplayed() {
 
 async lastRevisedDate() {
     const dateText = await $(this.lastRevisedDateLocator).getText();
-    const updatedText = dateText.substr(13)
-    const formattedDate = await updatedText.moment().format('MMddyy')
-    expect(formattedDate, 'Different').to.be.equal(updatedText);
+    const updatedText = dateText.substr(13).trim()
+    console.log(`Date after substring method -> ${updatedText}`);
+    return updatedText
+
     
 }
+
+async clickPrivacyStatment() {
+    await $(this.privacyStatementLocator).click();
+    await $(this.privacyStatementSummerHeaderLocator).waitForDisplayed()
+}
+
+async lastUpdatedDate() {
+    const lastUpdatedText = await $(this.lastUpdatedDateLocator).getText();
+    const updatedLastUpdatedText = lastUpdatedText.substr(13).trim()
+    console.log(`Updated Date on privacy page -> ${updatedLastUpdatedText}`);
+    return updatedLastUpdatedText
+}
+
 
 
 }

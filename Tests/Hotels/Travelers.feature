@@ -1,16 +1,18 @@
 Feature: Travelers
 
-# Scenario: Verify user can update number of guests on Home page
-#     Given I am on hotels homepage
-#     When I click on Travelers
-#     And I select adults as "6"
-#     And I select children as "3"
-#     Then I select the "first" childs age as "4"
-#     And I select the "second" childs age as "Under 1"
-#     And I select the "third" childs age as "7"
-#     Then I click on "Done"
-#     And I verify that total number of travelers is sum of adults and children traveling
+@SmokeTest
+Scenario: Verify user can update number of guests on Home page
+    Given I am on hotels homepage
+    When I click on Travelers
+    And I select adults as "6"
+    And I select children as "3"
+    Then I select the "first" childs age as "4"
+    And I select the "second" childs age as "Under 1"
+    And I select the "third" childs age as "7"
+    Then I click on "Done"
+    And I verify that total number of travelers is sum of adults and children traveling
 
+@SmokeTest
 Scenario: Verify Child-age dropdowns are same as number of Children selected
     Given I am on hotels homepage
     When I click on Travelers
