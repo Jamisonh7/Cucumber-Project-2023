@@ -21,15 +21,6 @@ thankYouforFeedbackLocator = '//h5[@data-localization="thank-you-heading"]';
 
 // Functions
 async submitFeedbackBtn() {
-    // const allHandles = await browser.getWindowHandles();
-    // for (const handle of allHandles) {
-    //     await browser.switchToWindow(handle);
-    //     const currentUrl = await browser.getUrl();
-    //     console.log(`current url -> ${currentUrl}\n\n`);
-    //     if (currentUrl.localeCompare('https://pay.https://www.directword.io/survey/domain=www.hotels.com/locale=en_US?metadata=%7B%22url%22%3A%22https%3A%2F%2Fwww.hotels.com%2F%3Fpos%3DHCOM_US%26locale%3Den_US%22%2C%20%22duaid%22%3A%20%22d88d0c4d-cc55-4c14-a283-c3915a19b195%22%7D.com/') === 0) {
-    //         break;
-    //     }
-    // }
     await $(this.feedbackSubmitLocator).click()
 }
 

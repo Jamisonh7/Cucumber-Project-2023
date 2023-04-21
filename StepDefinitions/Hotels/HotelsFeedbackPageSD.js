@@ -1,6 +1,6 @@
 const { Given, When, Then } = require('@wdio/cucumber-framework');
 const Homepage = require('../../Pages/Hotels/Homepage');
-const FeedbackPage = require('../../Pages/Hotels/FeedbackPage')
+const FeedbackPage = require('../../Pages/Hotels/FeedbackPage');
 const { expect } = require("chai");
 
 const homepage = new Homepage();

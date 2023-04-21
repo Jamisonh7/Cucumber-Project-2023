@@ -4,8 +4,6 @@ const moment = require("moment");
 class SignUpPage {
 
 // Locators
-// signInBtnLocator = ('//button[text()="Sign in"]');
-// signUpBtnLocator = ('//a[@data-stid="link-header-account-signup"]');
 createAnAccountHeaderLocator = '//h1[text()="Create an account"]';
 signUpEmailInputLocator = '#signupFormEmailInput';
 signUpFirstNameInputLocator = '#signupFormFirstNameInput';
@@ -25,13 +23,6 @@ termsAndConditionsLocator = '=Terms and Conditions';
 
 
 // Functions
-// async clickSignInBtn() {
-//     await $(this.signInBtnLocator).click();
-// }
-
-// async clickSignUpBtn() {
-//     await $(this.signUpBtnLocator).click();
-// }
 
 async enterSignUpEmail(email) {
     await $(this.createAnAccountHeaderLocator).waitForDisplayed()
